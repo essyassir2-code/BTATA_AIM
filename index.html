@@ -1,0 +1,158 @@
+<!-- 
+  FILE 1: index.html
+  Main HTML structure - entry point
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="author" content="BTATA">
+  <meta name="description" content="Professional Aim Trainer by BTATA - Precision Training Platform">
+  <title>BTATA AIM | Precision Training Lab</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <!-- Header with Creator Branding -->
+    <header class="header">
+      <div class="logo-section">
+        <div class="logo-icon">🎯</div>
+        <div class="logo-text">
+          BTATA AIM
+          <span class="logo-subtitle">precision training</span>
+        </div>
+      </div>
+      <div class="creator-badge">
+        <span class="creator-label">CREATED BY</span>
+        <strong class="creator-name">BTATA</strong>
+      </div>
+    </header>
+
+    <!-- Main Game Container -->
+    <main class="game-container">
+      <!-- Canvas Arena -->
+      <div class="arena-wrapper">
+        <canvas id="aimCanvas" width="1100" height="650"></canvas>
+        <div class="canvas-glow"></div>
+      </div>
+
+      <!-- Sidebar: All Controls & Stats -->
+      <div class="sidebar">
+        <!-- Stats Panel -->
+        <div class="panel stats-panel">
+          <h3 class="panel-title">📊 LIVE STATISTICS</h3>
+          <div class="stats-dashboard">
+            <div class="stat-card">
+              <span class="stat-value" id="statScore">0</span>
+              <span class="stat-label">SCORE</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-value" id="statAccuracy">0</span>
+              <span class="stat-label">ACCURACY</span>
+              <span class="stat-unit">%</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-value" id="statHits">0</span>
+              <span class="stat-label">HITS</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-value" id="statShots">0</span>
+              <span class="stat-label">SHOTS</span>
+            </div>
+          </div>
+          <div class="highscore-row">
+            <span>🏆 ALL-TIME HIGHSCORE</span>
+            <strong id="highscoreValue">0</strong>
+          </div>
+          <div class="feedback-area" id="feedbackMessage"></div>
+        </div>
+
+        <!-- Training Modes -->
+        <div class="panel modes-panel">
+          <h3 class="panel-title">⚡ TRAINING MODES</h3>
+          <div class="mode-buttons">
+            <button data-mode="tracking" class="mode-btn active">TRACKING</button>
+            <button data-mode="flick" class="mode-btn">FLICK</button>
+            <button data-mode="reaction" class="mode-btn">REACTION</button>
+          </div>
+          <div class="mode-description" id="modeDescription">Seamless tracking - follow the moving target to build muscle memory</div>
+        </div>
+
+        <!-- Difficulty & Core Settings -->
+        <div class="panel difficulty-panel">
+          <h3 class="panel-title">🎮 DIFFICULTY</h3>
+          <div class="difficulty-buttons">
+            <button data-diff="easy" class="diff-btn">EASY</button>
+            <button data-diff="normal" class="diff-btn active">NORMAL</button>
+            <button data-diff="hard" class="diff-btn">HARD</button>
+            <button data-diff="expert" class="diff-btn">EXPERT</button>
+          </div>
+        </div>
+
+        <!-- Sensitivity & Crosshair -->
+        <div class="panel aim-panel">
+          <h3 class="panel-title">🖱️ AIM CUSTOMIZATION</h3>
+          <div class="setting-row">
+            <label>SENSITIVITY</label>
+            <div class="slider-group">
+              <input type="range" id="sensitivitySlider" min="0.3" max="2.8" step="0.01" value="1.0">
+              <span id="sensitivityValue">1.00</span>
+            </div>
+          </div>
+          <div class="setting-row">
+            <label>TARGET COLOR</label>
+            <div class="color-selector">
+              <div class="color-preview" id="targetColorPreview" style="background: #ff3b6f;"></div>
+              <input type="color" id="targetColorPicker" value="#ff3b6f">
+            </div>
+          </div>
+          <div class="setting-row">
+            <label>CROSSHAIR</label>
+            <div class="crosshair-options">
+              <button data-cross="dot" class="cross-btn active">●</button>
+              <button data-cross="cross" class="cross-btn">✛</button>
+              <button data-cross="circle" class="cross-btn">○</button>
+              <button data-cross="plus" class="cross-btn">+</button>
+              <button data-cross="none" class="cross-btn">⊘</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Audio & Extra -->
+        <div class="panel audio-panel">
+          <h3 class="panel-title">🔊 AUDIO</h3>
+          <div class="setting-row">
+            <label>GUNSHOT (soft)</label>
+            <div class="toggle-switch" id="soundToggle">
+              <div class="toggle-knob"></div>
+            </div>
+          </div>
+          <div class="setting-row">
+            <label>VOLUME</label>
+            <div class="slider-group">
+              <input type="range" id="volumeSlider" min="0" max="100" value="30">
+              <span id="volumeValue">30%</span>
+            </div>
+          </div>
+          <div class="setting-row">
+            <label>HIT FLASH</label>
+            <div class="toggle-switch" id="hitFlashToggle">
+              <div class="toggle-knob"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="panel action-panel">
+          <button id="resetSessionBtn" class="action-btn secondary">⟳ NEW ROUND</button>
+          <button id="resetAllBtn" class="action-btn danger">🗑️ RESET ALL STATS</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
